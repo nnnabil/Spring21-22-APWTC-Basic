@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,19 @@ use App\Http\Controllers\PagesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-
-Route::get('/home', [PagesController::class, 'index'])->name('home');
+//Basic Routes
+Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
+
+//Student Routes
+
+Route::get('/studentList', [StudentController::class, 'studentList'])->name('studentList');
+Route::get('/studentEdit/{id}/{name}',[StudentController::class,'studentEdit'])->name('studentEdit');
+
+Route::get('/studentCreate', [StudentController::class, 'studentCreate'])->name('studentCreate');
+Route::post('/studentCreate', [StudentController::class, 'studentCreatesubmitted'])->name('studentCreate');
+
