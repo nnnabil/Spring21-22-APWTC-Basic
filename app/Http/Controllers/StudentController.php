@@ -10,7 +10,7 @@ class StudentController extends Controller
     public function studentCreate(){
         return view('pages.student.studentCreate');
     }
-    public function studentCreatesubmitted(Request $request){
+    public function studentCreateSubmitted(Request $request){
         $validate = $request->validate([
             'name'=>'required|min:5|max:10',
             'id'=>'required',
@@ -45,7 +45,29 @@ class StudentController extends Controller
         
     }
     public function studentEdit(Request $request){
-        return $request->id;
 
+        $student = Student::where('id', $request->id)->first();
+
+        // return $student;
+        return view('pages.student.studentEdit')->with('student', $student);;
+
+    }
+    public function studentEditSubmitted(Request $request){
+
+        $student = Student::where('id', $request->id)->first();
+
+        // return $request->id;
+        $student->name = $request->name;
+        $student->student_id = $request->student_id;
+        $student->email = $request->email;
+        $student->save();
+
+        return redirect()->route('studentList');
+    }
+    public function studentDelete(Request $request){
+        $student = Student::where('id', $request->id)->first();
+        $student->delete();
+        
+        return redirect()->route('studentList');
     }
 }
