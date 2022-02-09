@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,9 @@ Route::get('/studentDelete/{id}/{name}',[StudentController::class,'studentDelete
 
 Route::get('/studentCreate', [StudentController::class, 'studentCreate'])->name('studentCreate');
 Route::post('/studentCreate', [StudentController::class, 'studentCreateSubmitted'])->name('studentCreate');
+
+
+Route::get('/teacherCreate', [TeacherController::class, 'teacherCreate'])->name('teacherCreate');
+Route::post('/teacherCreate', [TeacherController::class, 'teacherCreateSubmitted'])->name('teacherCreate');
+Route::get('/teacherList', [TeacherController::class, 'teacherList'])->name('teacherList');
 
