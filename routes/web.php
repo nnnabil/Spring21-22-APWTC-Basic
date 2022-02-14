@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,8 @@ Route::get('/teacherCreate', [TeacherController::class, 'teacherCreate'])->name(
 Route::post('/teacherCreate', [TeacherController::class, 'teacherCreateSubmitted'])->name('teacherCreate');
 Route::get('/teacherList', [TeacherController::class, 'teacherList'])->name('teacherList');
 
+//Teacher Course
+Route::get('/teacher/courses',[TeacherController::class,'teacherCourses'])->name('teacher.courses');
+
+//course
+Route::get('/courses',[CourseController::class,'courseTeacher'])->name('teacher.courses');

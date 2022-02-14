@@ -6,6 +6,7 @@ use App\Models\Teacher;
 use App\Http\Requests\StoreTeacherRequest;
 use App\Http\Requests\UpdateTeacherRequest;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class TeacherController extends Controller
 {
@@ -98,5 +99,15 @@ class TeacherController extends Controller
     public function teacherList(){
         $teachers = Teacher::all();
         return view('pages.teacher.teacherList')->with('teachers', $teachers);
+    }
+    public function teacherCourses(){
+
+        $t = Teacher::where('id',1)->first();
+        // return $t->id;
+        //hasmany
+        // return $t->courses;
+
+        //eloquent
+        return $t->assignedCourses();
     }
 }
