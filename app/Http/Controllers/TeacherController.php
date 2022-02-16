@@ -92,17 +92,18 @@ class TeacherController extends Controller
         $teacher = new Teacher();
         $teacher->name = $request->name;
         $teacher->phone = $request->phone;
+        $teacher->password = $request->password;
         $teacher->save();
-        return $teacher;
+        return redirect()->route('teacherList');
 
     }
     public function teacherList(){
         $teachers = Teacher::all();
         return view('pages.teacher.teacherList')->with('teachers', $teachers);
     }
-    public function teacherCourses(){
+    public function teacherCourses(Request $request){
 
-        $t = Teacher::where('id',1)->first();
+        $t = Teacher::where('id',$request->id)->first();
         // return $t->id;
         //hasmany
         // return $t->courses;

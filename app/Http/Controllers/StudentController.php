@@ -7,6 +7,9 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
+    public function __construct(){
+        $this->middleware('ValidTeacher');
+    }
     public function studentCreate(){
         return view('pages.student.studentCreate');
     }
@@ -28,7 +31,7 @@ class StudentController extends Controller
         $student->student_id = $request->id;
         $student->email = $request->email;
         $student->save();
-        return $student;
+        return redirect()->route('studentList');
     }
     public function studentList(){
         $students = Student::all();

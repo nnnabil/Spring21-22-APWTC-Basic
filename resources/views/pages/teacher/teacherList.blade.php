@@ -8,7 +8,7 @@
         </tr>
         @foreach($teachers as $teacher)
         <tr>
-            <td>{{$teacher->name}}</td>
+            <td><a href="/teacher/courses/{{$teacher->id}}">{{$teacher->name}}</a></td>
             <td>{{$teacher->phone}}</td>
 
         </tr>

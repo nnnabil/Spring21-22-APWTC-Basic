@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+    // public $timestamps = false;
     protected $primaryKey = 'phone';
 
     //using hasmany verb one to many

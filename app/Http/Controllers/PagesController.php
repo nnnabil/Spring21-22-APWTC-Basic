@@ -21,4 +21,8 @@ class PagesController extends Controller
         ->with('dob', $dob)
         ->with('names', $names);
     }
+    public function teacherDash(){
+        return view('pages.teacher.teacherDash');
+
+    }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,12 +38,21 @@ Route::get('/studentCreate', [StudentController::class, 'studentCreate'])->name(
 Route::post('/studentCreate', [StudentController::class, 'studentCreateSubmitted'])->name('studentCreate');
 
 
-Route::get('/teacherCreate', [TeacherController::class, 'teacherCreate'])->name('teacherCreate');
+Route::get('/teacherCreate', [TeacherController::class, 'teacherCreate'])->name('teacherCreate')->middleware('ValidTeacher');
 Route::post('/teacherCreate', [TeacherController::class, 'teacherCreateSubmitted'])->name('teacherCreate');
-Route::get('/teacherList', [TeacherController::class, 'teacherList'])->name('teacherList');
+Route::get('/teacherList', [TeacherController::class, 'teacherList'])->name('teacherList')->middleware('ValidTeacher');
 
 //Teacher Course
-Route::get('/teacher/courses',[TeacherController::class,'teacherCourses'])->name('teacher.courses');
+// Route::get('/teacher/courses',[TeacherController::class,'teacherCourses'])->name('teacher.courses');
+Route::get('/teacher/courses/{id}',[TeacherController::class,'teacherCourses'])->name('teacher.courses');
 
 //course
 Route::get('/courses',[CourseController::class,'courseTeacher'])->name('teacher.courses');
+
+//Teacher login
+Route::get('/login',[LoginController::class,'login'])->name('login');
+Route::post('/login',[LoginController::class,'loginSubmit'])->name('login');
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+
+//teacher dash
+Route::get('/teacher/dash', [PagesController::class,'teacherDash'])->name('teacherDash')->middleware('ValidTeacher');
